@@ -1,0 +1,13 @@
+[book]
+title = "믿음의 차원"
+authors = ["dimohy"]
+description = "과학과 성경으로 탐구하는 고차원의 하나님과 믿음의 세계"
+language = "ko"
+
+[build]
+build-dir = "book"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/dimohy/dimension-of-faith"
