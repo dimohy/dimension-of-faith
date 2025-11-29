@@ -1,0 +1,5 @@
+# 성경 데이터 폴더 (저작권 보호)
+data/
+
+# Copilot Instructions (내부 정책 파일)
+.github/copilot-instructions.md
