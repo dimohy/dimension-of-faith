@@ -1,3 +1,9 @@
+---
+title: "Part 5: 새 하늘과 새 땅"
+layout: default
+nav_order: 7
+---
+
 # Part 5: 새 하늘과 새 땅 — 고차원의 완성
 
 ---

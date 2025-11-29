@@ -1,3 +1,9 @@
+---
+title: "Part 1: 차원의 세계로 초대"
+layout: default
+nav_order: 3
+---
+
 # Part 1: 차원의 세계로 초대
 
 ---

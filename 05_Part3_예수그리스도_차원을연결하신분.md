@@ -1,3 +1,9 @@
+---
+title: "Part 3: 예수 그리스도"
+layout: default
+nav_order: 5
+---
+
 # Part 3: 예수 그리스도 — 차원을 연결하신 분
 
 ---

@@ -1,3 +1,9 @@
+---
+title: "Part 2: 하나님, 고차원의 존재"
+layout: default
+nav_order: 4
+---
+
 # Part 2: 하나님, 고차원의 존재
 
 ---

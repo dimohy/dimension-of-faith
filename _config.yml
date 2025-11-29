@@ -1,0 +1,46 @@
+# 사이트 기본 설정
+title: "믿음의 차원"
+description: "과학과 성경으로 탐구하는 고차원의 하나님과 믿음의 세계"
+author: "dimohy"
+url: "https://dimohy.github.io"
+baseurl: "/dimension-of-faith"
+
+# 테마 설정
+remote_theme: sighingnow/jekyll-gitbook
+
+# 빌드 설정
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+# 플러그인
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+# 목차 설정 (toc)
+toc:
+  enabled: true
+  h_min: 1
+  h_max: 3
+
+# 책 네비게이션
+bookmarks_heading: "목차"
+
+# 페이지 설정
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# 파일 제외
+exclude:
+  - .github
+  - LICENSE
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

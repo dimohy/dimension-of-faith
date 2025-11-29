@@ -1,3 +1,9 @@
+---
+title: "Part 4: 믿음"
+layout: default
+nav_order: 6
+---
+
 # Part 4: 믿음 — 차원을 잇는 다리
 
 ---
