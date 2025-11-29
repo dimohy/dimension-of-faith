@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #fefefe;
+      --text-color: #333;
+      --sidebar-bg: #f8f6f1;
+      --sidebar-text: #555;
+      --sidebar-active: #d4a574;
+      --link-color: #8b4513;
+      --border-color: #e0d5c5;
+      --heading-color: #2c1810;
+      --blockquote-bg: #faf8f5;
+      --blockquote-border: #d4a574;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Serif KR', Georgia, serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.9;
+      font-size: 18px;
+    }
+
+    /* 레이아웃 */
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* 사이드바 */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-color);
+      padding: 30px 20px;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-header {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--sidebar-active);
+    }
+
+    .sidebar-header h1 {
+      font-size: 1.4rem;
+      color: var(--heading-color);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .sidebar-header p {
+      font-size: 0.85rem;
+      color: var(--sidebar-text);
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .nav-list {
+      list-style: none;
+    }
+
+    .nav-list li {
+      margin-bottom: 8px;
+    }
+
+    .nav-list a {
+      display: block;
+      padding: 10px 15px;
+      color: var(--sidebar-text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-radius: 5px;
+      transition: all 0.2s ease;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .nav-list a:hover {
+      background: rgba(212, 165, 116, 0.2);
+      color: var(--heading-color);
+    }
+
+    .nav-list a.active {
+      background: var(--sidebar-active);
+      color: white;
+      font-weight: 500;
+    }
+
+    .nav-section {
+      font-size: 0.8rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 20px 0 10px 15px;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    /* 메인 콘텐츠 */
+    .content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 50px 80px;
+      max-width: 900px;
+    }
+
+    .content h1 {
+      font-size: 2.2rem;
+      color: var(--heading-color);
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid var(--sidebar-active);
+    }
+
+    .content h2 {
+      font-size: 1.6rem;
+      color: var(--heading-color);
+      margin: 50px 0 20px;
+      padding-top: 20px;
+    }
+
+    .content h3 {
+      font-size: 1.3rem;
+      color: var(--heading-color);
+      margin: 35px 0 15px;
+    }
+
+    .content p {
+      margin-bottom: 1.5em;
+      text-align: justify;
+      word-break: keep-all;
+    }
+
+    .content blockquote {
+      background: var(--blockquote-bg);
+      border-left: 4px solid var(--blockquote-border);
+      padding: 20px 25px;
+      margin: 30px 0;
+      font-style: italic;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .content blockquote p {
+      margin-bottom: 0;
+    }
+
+    .content ul, .content ol {
+      margin: 20px 0 20px 30px;
+    }
+
+    .content li {
+      margin-bottom: 10px;
+    }
+
+    .content a {
+      color: var(--link-color);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .content a:hover {
+      border-bottom-color: var(--link-color);
+    }
+
+    .content hr {
+      border: none;
+      height: 1px;
+      background: var(--border-color);
+      margin: 40px 0;
+    }
+
+    .content strong {
+      color: var(--heading-color);
+      font-weight: 700;
+    }
+
+    /* 페이지 네비게이션 */
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-color);
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .page-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 20px;
+      background: var(--sidebar-bg);
+      border-radius: 8px;
+      color: var(--sidebar-text);
+      text-decoration: none;
+      transition: all 0.2s;
+      max-width: 45%;
+    }
+
+    .page-nav a:hover {
+      background: var(--sidebar-active);
+      color: white;
+    }
+
+    .page-nav .prev::before {
+      content: "←";
+    }
+
+    .page-nav .next::after {
+      content: "→";
+    }
+
+    /* 모바일 메뉴 버튼 */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1000;
+      background: var(--sidebar-active);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    /* 반응형 */
+    @media (max-width: 900px) {
+      .content {
+        padding: 50px 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+        z-index: 999;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .content {
+        margin-left: 0;
+        padding: 80px 25px 50px;
+      }
+
+      .content h1 {
+        font-size: 1.8rem;
+      }
+
+      body {
+        font-size: 16px;
+      }
+
+      .page-nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .page-nav a {
+        max-width: 100%;
+      }
+    }
+
+    /* 스크롤바 스타일 */
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+  
+  <div class="container">
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h1><a href="{{ site.baseurl }}/" style="color: inherit; text-decoration: none;">믿음의 차원</a></h1>
+        <p>과학과 성경으로 탐구하는 믿음의 세계</p>
+      </div>
+      
+      <div class="nav-section">시작</div>
+      <ul class="nav-list">
+        <li><a href="{{ site.baseurl }}/" {% if page.nav_order == 0 %}class="active"{% endif %}>홈</a></li>
+        <li><a href="{{ site.baseurl }}/00_표지글.html" {% if page.title == "표지글" %}class="active"{% endif %}>표지글</a></li>
+        <li><a href="{{ site.baseurl }}/02_프롤로그.html" {% if page.title == "프롤로그" %}class="active"{% endif %}>프롤로그</a></li>
+      </ul>
+
+      <div class="nav-section">Part 1</div>
+      <ul class="nav-list">
+        <li><a href="{{ site.baseurl }}/03_Part1_차원의세계로초대.html" {% if page.nav_order == 3 %}class="active"{% endif %}>차원의 세계로 초대</a></li>
+      </ul>
+
+      <div class="nav-section">Part 2</div>
+      <ul class="nav-list">
+        <li><a href="{{ site.baseurl }}/04_Part2_하나님_고차원의존재.html" {% if page.nav_order == 4 %}class="active"{% endif %}>하나님, 고차원의 존재</a></li>
+      </ul>
+
+      <div class="nav-section">Part 3</div>
+      <ul class="nav-list">
+        <li><a href="{{ site.baseurl }}/05_Part3_예수그리스도_차원을연결하신분.html" {% if page.nav_order == 5 %}class="active"{% endif %}>예수 그리스도</a></li>
+      </ul>
+
+      <div class="nav-section">Part 4</div>
+      <ul class="nav-list">
+        <li><a href="{{ site.baseurl }}/06_Part4_믿음_차원을잇는다리.html" {% if page.nav_order == 6 %}class="active"{% endif %}>믿음</a></li>
+      </ul>
+
+      <div class="nav-section">Part 5</div>
+      <ul class="nav-list">
+        <li><a href="{{ site.baseurl }}/07_Part5_새하늘과새땅_고차원의완성.html" {% if page.nav_order == 7 %}class="active"{% endif %}>새 하늘과 새 땅</a></li>
+      </ul>
+
+      <div class="nav-section">마무리</div>
+      <ul class="nav-list">
+        <li><a href="{{ site.baseurl }}/08_에필로그.html" {% if page.title == "에필로그" %}class="active"{% endif %}>에필로그</a></li>
+        <li><a href="{{ site.baseurl }}/09_부록.html" {% if page.title == "부록" %}class="active"{% endif %}>부록</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      {{ content }}
+
+      {% if page.nav_order %}
+      <nav class="page-nav">
+        {% if page.nav_order > 0 %}
+        <a href="javascript:history.back()" class="prev">이전</a>
+        {% else %}
+        <span></span>
+        {% endif %}
+        
+        {% if page.nav_order < 9 %}
+        <a href="javascript:history.forward()" class="next">다음</a>
+        {% endif %}
+      </nav>
+      {% endif %}
+    </main>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+
+    // 사이드바 외부 클릭 시 닫기
+    document.addEventListener('click', function(e) {
+      const sidebar = document.getElementById('sidebar');
+      const toggle = document.querySelector('.menu-toggle');
+      if (window.innerWidth <= 768 && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
+        sidebar.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
